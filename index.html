@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bomb planted 7355608</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        background: #000;
+        color: #00ff9f;
+        font-family: "Courier New", monospace;
+        overflow: hidden;
+    }
+
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .terminal {
+        padding: 20px;
+        height: 100vh;
+        overflow-y: auto;
+    }
+
+    .line {
+        margin: 5px 0;
+        white-space: pre-wrap;
+    }
+
+    .cursor {
+        display: inline-block;
+        width: 10px;
+        background: #00ff9f;
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0%, 50%, 100% { opacity: 1; }
+        25%, 75% { opacity: 0; }
+    }
+
+    .glitch {
+        animation: glitch 0.2s infinite;
+    }
+
+    @keyframes glitch {
+        0% { transform: translate(0px); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(2px, -2px); }
+        60% { transform: translate(-1px, 1px); }
+        80% { transform: translate(1px, -1px); }
+        100% { transform: translate(0px); }
+    }
+
+    .danger {
+        color: red;
+        text-shadow: 0 0 5px red;
+    }
+</style>
+</head>
+
+<body>
+<audio id="bombSound" src="C4 Bomb CSGO.mp3"></audio>
+
+<canvas id="matrix"></canvas>
+
+<div class="terminal" id="terminal"></div>
+
+<script>
+const bombSound = document.getElementById("bombSound");
+
+// klik sekali untuk mulai suara
+document.addEventListener("click", function () {
+    bombSound.play();
+});
+// MATRIX EFFECT
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = "01NUCLEARDEV";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+
+const drops = [];
+for (let x = 0; x < columns; x++) {
+    drops[x] = 1;
+}
+
+function drawMatrix() {
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#0f0";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+
+        drops[i]++;
+    }
+}
+
+setInterval(drawMatrix, 35);
+
+// TERMINAL SIMULATION
+const terminal = document.getElementById("terminal");
+
+const lines = [
+    "Initializing Nuclear Developer System...",
+    "Loading Reactor Core...",
+    "Stabilizing Quantum Threads...",
+    "Injecting Uranium Protocol...",
+    "WARNING: Radiation Level Rising...",
+    "Bypassing Security Firewall...",
+    "Decrypting Classified Code...",
+    "Access Granted.",
+    "",
+    ">>> Welcome, Operator",
+    ">>> System Control Activated",
+    "",
+    "Launching Main Reactor...",
+];
+
+let index = 0;
+
+function typeLine() {
+    if (index < lines.length) {
+        let line = document.createElement("div");
+        line.className = "line";
+        terminal.appendChild(line);
+
+        let text = lines[index];
+        let i = 0;
+
+        function typing() {
+            if (i < text.length) {
+                line.textContent += text.charAt(i);
+                i++;
+                setTimeout(typing, 30);
+            } else {
+                index++;
+                setTimeout(typeLine, 300);
+            }
+        }
+
+        typing();
+    } else {
+        simulateSystem();
+    }
+}
+
+typeLine();
+
+// SYSTEM LOOP
+function simulateSystem() {
+    setInterval(() => {
+        let line = document.createElement("div");
+        line.className = "line";
+
+        const messages = [
+            "Core Temperature: " + random(800, 1200) + "°C",
+            "Radiation Level: " + random(50, 200) + " mSv",
+            "CPU Load: " + random(10, 99) + "%",
+            "Encrypting data packets...",
+            "Running anomaly scan...",
+            "Stabilizing reactor rods..."
+        ];
+
+        let msg = messages[Math.floor(Math.random() * messages.length)];
+
+        if (msg.includes("Radiation") && Math.random() > 0.7) {
+            line.classList.add("danger", "glitch");
+        }
+
+        line.textContent = msg;
+        terminal.appendChild(line);
+        terminal.scrollTop = terminal.scrollHeight;
+
+    }, 1200);
+}
+
+function random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// RESIZE FIX
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
+
+</body>
+</html>
