@@ -35,7 +35,7 @@
 # 🔐 CRYPTO & CODE
 
 ### _Encrypting Ideas. Decoding Reality._
-### _coppy and paste link : https://itmeyonko.github.io/_
+### _🔫 https://itmeyonko.github.io/ 🔫_
 
 </div>
 
