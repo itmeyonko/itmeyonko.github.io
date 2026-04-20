@@ -1,7 +1,3 @@
-*** coppy and paste link : itmeyonko.github.io
-
-
-
 <div align="center">
 
 <!-- Background Container -->
@@ -39,6 +35,7 @@
 # 🔐 CRYPTO & CODE
 
 ### _Encrypting Ideas. Decoding Reality._
+###_coppy and paste link : itmeyonko.github.io_
 
 </div>
 
