@@ -36,7 +36,7 @@
 
 ### _Encrypting Ideas. Decoding Reality._
 ### _🔫 https://itmeyonko.github.io/ 🔫_
-
+### _▶• ılıılıılılılııılıılı. 0_
 </div>
 
 </div>
